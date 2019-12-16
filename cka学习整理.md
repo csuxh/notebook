@@ -91,5 +91,5 @@ secretGenerator:
 `openssl req -new -key jackxia.key -out jackxia.csr -subj "/CN=csuxh/O=linux"`
 * 基于k8s集群CA签署证书
   `openssl x509 -req -in jackxia.csr -CA /etc/kubernetes/pki/ca.crt -CAkey /etc/kubernetes/pki/ca.key -CAcreateserial -out jackxia.crt -days=3650`
-* 查看证书
+* 查看证书  
 `openssl x509 -in ca.crt -text -noout`

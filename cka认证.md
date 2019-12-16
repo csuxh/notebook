@@ -7,7 +7,7 @@
 6. Display Scheduler Events
 7. Config scheduler
 
-# 二.Login/Monitoring 5%
+# 二.Log/Monitoring 5%
 1. Monitor all cluster components
 2. Monitor applications
 3. Mange cluster component logs
