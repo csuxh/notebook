@@ -84,7 +84,9 @@ secretGenerator:
 5. Security contexts
 6. Secure persistent key value store
 
-## openssl  
+## Authentication认证  
+
+### openssl  
 * 生成私钥文件  
 `(umask 077; openssl genrsa -out jackxia.key 2048)`
 * 生成证书请求  
@@ -93,3 +95,40 @@ secretGenerator:
   `openssl x509 -req -in jackxia.csr -CA /etc/kubernetes/pki/ca.crt -CAkey /etc/kubernetes/pki/ca.key -CAcreateserial -out jackxia.crt -days=3650`
 * 查看证书  
 `openssl x509 -in ca.crt -text -noout`
+* 基于证书创建secret  
+`kubectl create secret generic jackxia --from-file=jackxia.key=jackxia.key --from-file=jackxia.crt=jackxia.crt`
+` kubectl get secret | awk '/^jackxia/{print $1}' ` 
+* 上下文 security contexts  
+1. 设置集群  
+`kubectl config set-cluster cluster02 --embed-certs=true --certificate-authority=jackxia.crt --server="https://192.168.56.210:6443"`  
+2. 设置证书
+ `kubectl config set-credentials jackxia --embed-certs=true --client-certificate=jackxia.crt --client-key=jackxia.key #add user`
+3. 设置上下文
+ `kubectl config set-context jackxia --cluster=kubernetes --user=jackxia --namespace=kube-system`  
+4. 配置权限
+`kubectl create clusterrolebinding jackxia-admin --clusterrole=cluster-admin --group=linux --context=kubernetes-admin@kubernetes`
+5. 其他命令
+切换context  
+kubectl config use-context jackxia  
+临时指定context  
+kubectl get pod --context=kubernetes-admin@kubernetes  
+6. 生成kubeconfig文件
+* kubectl config set-cluster kubernetes --embed-certs=true --certificate-authority=/etc/kubernetes/pki/ca.crt --server="https://192.168.152.128:6443" --kubeconfig=./jackxia.kubeconfig
+* __配置token__  
+获取token  
+`dash_token=$(kubectl get secret/dashboard-admin-token-jkf99 -o jsonpath={.data.token} | base64 -d)`  
+`kubectl config set-credentials jackxia --token=${dash_token} --kubeconfig=jackxia.kubeconfig`
+* 设置context  
+kubectl config set-context jackxia --cluster=kubernetes --user=jackxia --kubeconfig=./jackxia.kubeconfig
+
+
+### 关系：
+角色(role,clusterrole) 对应权限(verb, resource ...) verb支持 get list watch create update patch proxy redirect delete deletecollection
+ServiceAccount: 服务账户(admin,view...)
+User,Group：openssl生成
+RoleBinding,ClusterroleBinding 
+
+
+
+  
+
