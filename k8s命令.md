@@ -4,6 +4,11 @@
 
 `kubectl explain pv --recursive`
 
+kubectl run -it cirros --image=busybox --rm --restart=Never sh
+
+ansible部署k8s:
+https://github.com/easzlab/kubeasz
+
 kubectl get events
 
 kubectl get xxx -o name
