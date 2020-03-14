@@ -10,9 +10,13 @@ group1=parser.add_mutually_exclusive_group() //互斥参数
 group1.add_argument(xxx)
 
 # LDAP   
-LDAP Host: CN-BW1002.hcg.homecredit.net
+LDAP Host: 
 Port: 389
-Base DN: DC=hcg,DC=homecredit,DC=net
+Base DN: 
 Search attribute: sAMAccountName
-Bind DN: CN.ZABBIX.SVC
+Bind DN: 
 Bind password: xxx
+
+
+# pyxl 设置格式  
+https://www.codeleading.com/article/9359278171/
