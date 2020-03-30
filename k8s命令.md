@@ -53,3 +53,7 @@ kubectl edit xxx 环境变量： EDITOR or KUBE_EDITOR
 ```
 </details>
 
+
+
+https://github.com/easzlab/kubeasz
+

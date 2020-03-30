@@ -1,5 +1,9 @@
 
 
+go-proxy配置：(https://goproxy.io/)  
+go env -w GO111MODULE=on
+go env -w GOPROXY="https://goproxy.io,direct"
+
 编译运行  go build/install xxx.go  
 格式化： gofmt -w xxx.go (-w写入文件)  
 
@@ -270,3 +274,8 @@ export GOPROXY=https://mirrors.aliyun.com/goproxy/
 Go jira:
 https://javascript.ctolib.com/go-jira.html
 https://github.com/andygrunwald/go-jira
+
+
+# go ldap 
+https://blog.csdn.net/weixin_39594447/article/details/87804225 
+https://mojotv.cn/2019/07/15/ldap
