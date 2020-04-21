@@ -4,6 +4,9 @@ go-proxy配置：(https://goproxy.io/)
 go env -w GO111MODULE=on
 go env -w GOPROXY="https://goproxy.io,direct"
 
+go env -w GO111MODULE=on
+go env -w GOPROXY=https://mirrors.aliyun.com/goproxy/,direct
+
 编译运行  go build/install xxx.go  
 格式化： gofmt -w xxx.go (-w写入文件)  
 
