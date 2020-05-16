@@ -4,6 +4,8 @@ go-proxy配置：(https://goproxy.io/)
 go env -w GO111MODULE=on
 go env -w GOPROXY="https://goproxy.io,direct"
 
+export GOPROXY=https://mirrors.aliyun.com/goproxy/ (阿里云)
+
 编译运行  go build/install xxx.go  
 格式化： gofmt -w xxx.go (-w写入文件)  
 
@@ -279,3 +281,25 @@ https://github.com/andygrunwald/go-jira
 # go ldap 
 https://blog.csdn.net/weixin_39594447/article/details/87804225 
 https://mojotv.cn/2019/07/15/ldap
+
+
+# go依赖包管理
+## dep 
+安装dep：https://www.jianshu.com/p/543dd5ce56fe curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh  or brew install dep
+
+初始化： dep init 
+dep ensure
+
+
+## godep
+godep: go get -u github.com/tools/godep
+
+
+
+## go mod 
+https://www.cnblogs.com/nickchen121/p/11517437.html
+export GO111MODULE=on
+go mod init github.com/xxx/xxx
+go build (将依赖加到go.mod中)
+go get . (查找依赖并记录在go.md)
+go mod vendor(依赖下载到vendor并编译)
