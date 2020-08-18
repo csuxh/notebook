@@ -89,3 +89,37 @@ def myfunc2(a):
 a = "test"
 myfunc2(a)
 ```
+
+
+# virtualenv
+virtualenv env
+virtualenv --no-site-packages [虚拟环境名称]
+virtualenv -p /usr/local/bin/python3 venv
+
+cd ENV
+source ./bin/activate
+deactivate
+
+
+
+#python with ssl  
+install openssl (./config make make install)
+yum install libffi-devel 
+
+
+vim Modules/Setup
+SSL=/usr/local/ssl
+_ssl _ssl.c \
+-DUSE_SSL -I$(SSL)/include -I$(SSL)/include/openssl \
+-L$(SSL)/lib -lssl -lcrypto
+
+echo "/usr/local/lib64/" >> /etc/ld.so.conf  && ldconfig
+
+
+更新sqlite3版本
+export LD_LIBRARY_PATH="/usr/local/sqlite3/lib"
+
+
+
+## django命令
+python3 manage.py runserver 0.0.0.0:9999
