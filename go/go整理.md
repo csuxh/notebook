@@ -296,6 +296,16 @@ https://mojotv.cn/2019/07/15/ldap
 dep ensure
 
 
+## vendor目录
+vendor目录被添加到除了GOPATH和GOROOT之外的依赖目录查找的解决方案。在Go 1.6之前，你需要手动的设置环境变量GO15VENDOREXPERIMENT=1才可以使Go找到Vendor目录，然而在Go 1.6之后，这个功能已经不需要配置环境变量就可以实现了
+
+查找依赖包顺序：
+当前包下的vendor目录。
+向上级目录查找，直到找到src下的vendor目录。
+在GOPATH下面查找依赖包。
+在GOROOT目录下查找
+
+
 ## godep
 godep: go get -u github.com/tools/godep
 
@@ -308,3 +318,25 @@ go mod init github.com/xxx/xxx
 go build (将依赖加到go.mod中)
 go get . (查找依赖并记录在go.md)
 go mod vendor(依赖下载到vendor并编译)
+
+
+
+# 爬虫框架
+http://go-colly.org/
+https://github.com/PuerkitoBio/goquery (web解析)
+
+
+
+# go常用包及doc
+https://studygolang.com/pkgdoc
+https://github.com/jobbole/awesome-go-cn
+
+
+# 容器化  
+go build -tags netgo -o test
+```Dockerfile
+FROM alpine:latest
+ADD test  /usr/local/bin/
+WORKDIR /usr/local/bin/
+CMD ["test"]
+```

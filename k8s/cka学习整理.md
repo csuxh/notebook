@@ -182,6 +182,9 @@ export ETCD_ENDPOINTS="https://192.168.56.211:2379,https://192.168.56.212:2379,h
 
 ETCDCTL_API=3 etcdctl --endpoints=${ETCD_ENDPOINTS} --cert=/etc/etcd/cert/etcd.pem --cacert=/etc/kubernetes/cert/ca.pem --key=/etc/etcd/cert/etcd-key.pem -w table  endpoint status
 
+
+etcdctl --endpoints="https://192.168.56.211:2379,https://192.168.56.212:2379,https://192.168.56.213:2379" --cacert=/etc/kubernetes/cert/ca.pem --cert=/etc/etcd/cert/etcd.pem --key=/etc/etcd/cert/etcd-key.pem endpoint status
+
 ## apiserver
 启动参数：  
 --bind-address： https 监听的 IP，不能为 127.0.0.1，否则外界不能访问它的安全端口 6443 (这里配了之后,controller-manager/kube-scheduler的kubeconfig文件里需要配cluster-ip为nodeip, 不能直接写127.0.0.1)
